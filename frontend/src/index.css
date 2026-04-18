@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-100 antialiased;
+    overflow: hidden;
+  }
+
+  /* ── Custom scrollbar ────────────────────────────────────── */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+  }
+}
+
+@layer components {
+  /* ── Glow effects ────────────────────────────────────────── */
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.08),
+                0 0 60px rgba(34, 211, 238, 0.04);
+  }
+
+  .glow-rose {
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.12),
+                0 0 60px rgba(244, 63, 94, 0.06);
+  }
+
+  .glow-emerald {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.08),
+                0 0 60px rgba(52, 211, 153, 0.04);
+  }
+
+  /* ── Typing dots animation ───────────────────────────────── */
+  .typing-dot {
+    @apply w-1.5 h-1.5 bg-cyan-400 rounded-full;
+    animation: typingBounce 1.4s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.16s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.32s; }
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}

@@ -1,0 +1,19 @@
+{
+  "project": "SENTIO",
+  "phase": "Phase 3 — Cross-Modal Validation",
+  "metrics": {
+    "mae_bpm": 11.792,
+    "rmse_bpm": 16.114,
+    "pearson_r": 0.895,
+    "pearson_p_value": 0.0,
+    "mean_bias_bpm": -2.086,
+    "loa_upper_bpm": 29.462,
+    "loa_lower_bpm": -33.634,
+    "mape_percent": 13.39,
+    "n_samples": 69
+  },
+  "interpretation": {
+    "mae_bpm": "Poor — not suitable for heart rate estimation",
+    "pearson_r": "Strong linear agreement"
+  }
+}
