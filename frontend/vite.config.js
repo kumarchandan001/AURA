@@ -5,6 +5,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
+    allowedHosts: [
+      "multitask-gray-jargon.ngrok-free.dev"
+    ],
     proxy: {
       '/video_feed': {
         target: 'http://localhost:8000',

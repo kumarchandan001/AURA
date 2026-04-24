@@ -1,9 +1,10 @@
 % ======================================================================
-% references.bib — Project SENTIO: Bibliography
+% references.bib — Project AURA: Bibliography
 %
-% Placeholder citations for IEEE journal submission.
+% Complete citations for IEEE conference submission.
 % Covers: rPPG fundamentals, affective computing, clinical validation,
-%         Butterworth filtering, HRV analysis, and Human-AI interaction.
+%         Butterworth filtering, HRV analysis, Human-AI interaction,
+%         LLM prompt engineering, and system frameworks.
 % ======================================================================
 
 @article{verkruysse2008remote,
@@ -15,9 +16,7 @@
   pages     = {21434--21445},
   year      = {2008},
   publisher = {Optica Publishing Group},
-  doi       = {10.1364/OE.16.021434},
-  note      = {Foundational work demonstrating rPPG feasibility from the green
-               channel of standard video cameras under ambient illumination.}
+  doi       = {10.1364/OE.16.021434}
 }
 
 @article{poh2011advancements,
@@ -30,9 +29,7 @@
   pages     = {7--11},
   year      = {2011},
   publisher = {IEEE},
-  doi       = {10.1109/TBME.2010.2086456},
-  note      = {Introduced ICA-based source separation for webcam rPPG,
-               achieving clinical-grade HR estimation.}
+  doi       = {10.1109/TBME.2010.2086456}
 }
 
 @article{mcduff2017survey,
@@ -45,9 +42,7 @@
   pages     = {1579--1588},
   year      = {2017},
   publisher = {IEEE},
-  doi       = {10.1109/TBME.2014.2359372},
-  note      = {Survey of camera-based physiological measurement methods
-               including pulse waveform morphology analysis.}
+  doi       = {10.1109/TBME.2014.2359372}
 }
 
 @article{bland1986statistical,
@@ -60,9 +55,7 @@
   pages     = {307--310},
   year      = {1986},
   publisher = {Elsevier},
-  doi       = {10.1016/S0140-6736(86)90837-8},
-  note      = {Defines the Bland--Altman plot and Limits of Agreement (LoA)
-               for clinical method-comparison studies.}
+  doi       = {10.1016/S0140-6736(86)90837-8}
 }
 
 @article{shaffer2017overview,
@@ -73,23 +66,19 @@
   pages     = {258},
   year      = {2017},
   publisher = {Frontiers Media SA},
-  doi       = {10.3389/fpubh.2017.00258},
-  note      = {Comprehensive review of time-domain HRV metrics including
-               RMSSD and their physiological interpretation.}
+  doi       = {10.3389/fpubh.2017.00258}
 }
 
-@inproceedings{picard2001affective,
+@article{picard2001affective,
   author    = {Picard, Rosalind W.},
   title     = {Affective Computing: Challenges},
-  booktitle = {International Journal of Human-Computer Studies},
+  journal   = {International Journal of Human-Computer Studies},
   volume    = {59},
   number    = {1--2},
   pages     = {55--64},
   year      = {2003},
   publisher = {Elsevier},
-  doi       = {10.1016/S1071-5819(03)00052-1},
-  note      = {Seminal work on computational systems that recognize, interpret,
-               and adapt to human affective states.}
+  doi       = {10.1016/S1071-5819(03)00052-1}
 }
 
 @article{lee2024humanai,
@@ -102,7 +91,162 @@
   pages     = {1--38},
   year      = {2024},
   publisher = {ACM},
-  doi       = {10.1145/3631234},
-  note      = {Reviews systems that modulate AI agent behaviour based on
-               biometric stress indicators, including LLM prompt adaptation.}
+  doi       = {10.1145/3631234}
+}
+
+@inproceedings{li2014remote,
+  author    = {Li, Xiaobai and Chen, Jie and Zhao, Guoying and Pietik{\"a}inen, Matti},
+  title     = {Remote Heart Rate Measurement from Face Videos under
+               Realistic Situations},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision
+               and Pattern Recognition (CVPR)},
+  pages     = {4264--4271},
+  year      = {2014},
+  publisher = {IEEE},
+  doi       = {10.1109/CVPR.2014.543}
+}
+
+@inproceedings{chen2018deepphys,
+  author    = {Chen, Weixuan and McDuff, Daniel},
+  title     = {{DeepPhys}: Video-Based Physiological Measurement Using
+               Convolutional Attention Networks},
+  booktitle = {Proceedings of the European Conference on Computer Vision
+               (ECCV)},
+  pages     = {349--365},
+  year      = {2018},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-030-01216-8_22}
+}
+
+@article{barrett2019emotional,
+  author    = {Barrett, Lisa Feldman and Adolphs, Ralph and Marsella, Stacy
+               and Martinez, Aleix M. and Pollak, Seth D.},
+  title     = {Emotional Expressions Reconsidered: Challenges to Inferring
+               Emotion from Human Facial Movements},
+  journal   = {Psychological Science in the Public Interest},
+  volume    = {20},
+  number    = {1},
+  pages     = {1--68},
+  year      = {2019},
+  publisher = {SAGE Publications},
+  doi       = {10.1177/1529100619832930}
+}
+
+@article{mollahosseini2017affectnet,
+  author    = {Mollahosseini, Ali and Hasani, Behzad and Mahoor, Mohammad H.},
+  title     = {{AffectNet}: A Database for Facial Expression, Valence,
+               and Arousal Computing in the Wild},
+  journal   = {IEEE Transactions on Affective Computing},
+  volume    = {10},
+  number    = {1},
+  pages     = {18--31},
+  year      = {2019},
+  publisher = {IEEE},
+  doi       = {10.1109/TAFFC.2017.2740923}
+}
+
+@article{thayer2012meta,
+  author    = {Thayer, Julian F. and {\AA}hs, Fredrik and Fredrikson, Mats
+               and Sollers, John J. and Wager, Tor D.},
+  title     = {A Meta-Analysis of Heart Rate Variability and Neuroimaging
+               Studies: Implications for Heart Rate Variability as a Marker
+               of Stress and Health},
+  journal   = {Neuroscience \& Biobehavioral Reviews},
+  volume    = {36},
+  number    = {2},
+  pages     = {747--756},
+  year      = {2012},
+  publisher = {Elsevier},
+  doi       = {10.1016/j.neubiorev.2011.11.009}
+}
+
+@inproceedings{lugaresi2019mediapipe,
+  author    = {Lugaresi, Camillo and Tang, Jiuqiang and Nash, Hadon
+               and McClanahan, Chris and Uboweja, Esha and Hays, Michael
+               and Zhang, Fan and Chang, Chuo-Ling and Yong, Ming Guang
+               and Lee, Juhyun and others},
+  title     = {{MediaPipe}: A Framework for Building Perception Pipelines},
+  booktitle = {Workshop on Machine Learning for Multimedia at ACM Multimedia},
+  year      = {2019},
+  publisher = {ACM},
+  doi       = {10.48550/arXiv.1906.08172}
+}
+
+@article{bent2020investigating,
+  author    = {Bent, Brinnae and Goldstein, Benjamin A. and Kibbe, Warren A.
+               and Dunn, Jessilyn P.},
+  title     = {Investigating Sources of Inaccuracy in Wearable Optical
+               Heart Rate Sensors},
+  journal   = {npj Digital Medicine},
+  volume    = {3},
+  number    = {1},
+  pages     = {1--9},
+  year      = {2020},
+  publisher = {Nature Publishing Group},
+  doi       = {10.1038/s41746-020-0226-6}
+}
+
+@article{dehaan2013robust,
+  author    = {de Haan, Gerard and Jeanne, Vincent},
+  title     = {Robust Pulse Rate from Chrominance-Based {rPPG}},
+  journal   = {IEEE Transactions on Biomedical Engineering},
+  volume    = {60},
+  number    = {10},
+  pages     = {2878--2886},
+  year      = {2013},
+  publisher = {IEEE},
+  doi       = {10.1109/TBME.2013.2266196}
+}
+
+@article{nowara2020meta,
+  author    = {Nowara, Ewa M. and McDuff, Daniel and Veeraraghavan, Ashok},
+  title     = {A Meta-Analysis of the Impact of Skin Tone and Gender on
+               Non-Contact Photoplethysmography Measurements},
+  journal   = {Proceedings of the IEEE/CVF Conference on Computer Vision
+               and Pattern Recognition Workshops (CVPRW)},
+  pages     = {284--285},
+  year      = {2020},
+  publisher = {IEEE},
+  doi       = {10.1109/CVPRW50498.2020.00150}
+}
+
+@article{brown2020language,
+  author    = {Brown, Tom B. and Mann, Benjamin and Ryder, Nick and Subbiah,
+               Melanie and Kaplan, Jared and Dhariwal, Prafulla and
+               Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish
+               and Askell, Amanda and others},
+  title     = {Language Models are Few-Shot Learners},
+  journal   = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {33},
+  pages     = {1877--1901},
+  year      = {2020}
+}
+
+@article{wei2022chain,
+  author    = {Wei, Jason and Wang, Xuezhi and Schuurmans, Dale and
+               Bosma, Maarten and Ichter, Brian and Xia, Fei and Chi, Ed
+               and Le, Quoc V. and Zhou, Denny},
+  title     = {Chain-of-Thought Prompting Elicits Reasoning in Large Language
+               Models},
+  journal   = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {35},
+  pages     = {24824--24837},
+  year      = {2022}
+}
+
+@misc{ollama2024,
+  author    = {{Ollama Team}},
+  title     = {Ollama: Run Large Language Models Locally},
+  year      = {2024},
+  url       = {https://ollama.com},
+  note      = {Accessed: 2024-12-01}
+}
+
+@misc{ramirez2018fastapi,
+  author    = {Ram{\'\i}rez, Sebasti{\'a}n},
+  title     = {{FastAPI}: A Modern, Fast Web Framework for Building APIs
+               with Python},
+  year      = {2018},
+  url       = {https://fastapi.tiangolo.com},
+  note      = {Accessed: 2024-12-01}
 }
