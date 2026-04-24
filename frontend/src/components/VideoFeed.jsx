@@ -15,9 +15,9 @@ function VideoFeed({ fps = 0, isConnected = false }) {
       {/* Video stream */}
       {isConnected ? (
         <img
-          id="sentio-video-feed"
+          id="aura-video-feed"
           src="/video_feed"
-          alt="SENTIO Live Sensor Feed"
+          alt="AURA Live Sensor Feed"
           className="w-full h-full object-contain bg-black"
         />
       ) : (

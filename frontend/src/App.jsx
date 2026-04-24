@@ -91,9 +91,9 @@ function App() {
           </div>
           <div>
             <h1 className="text-sm font-bold tracking-tight">
-              <span className="text-cyan-400">SENTIO</span>
+              <span className="text-cyan-400">AURA</span>
               <span className="text-slate-400 font-normal ml-2 hidden sm:inline">
-                Contactless Affective Computing Framework
+                Affective Understanding & Responsive Agent
               </span>
             </h1>
           </div>

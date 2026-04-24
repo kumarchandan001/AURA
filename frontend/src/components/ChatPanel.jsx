@@ -4,7 +4,7 @@ import { Send, Bot, User, Zap } from 'lucide-react';
 /**
  * ChatPanel — Messenger-style Affective AI chat interface.
  *
- * User messages align right (blue), SENTIO AI messages align left (dark).
+ * User messages align right (blue), AURA AI messages align left (dark).
  * Includes a typing indicator (animated dots) while the FastAPI /api/chat
  * endpoint processes the request.
  */
@@ -12,7 +12,7 @@ function ChatPanel({ state }) {
   const [messages, setMessages] = useState([
     {
       sender: 'ai',
-      text: `Welcome to Project SENTIO.\n\nI'm your adaptive AI assistant. My communication style adjusts in real-time based on your physiological state:\n\n• CALM → Detailed, technical responses\n• STRESSED → Concise, supportive guidance\n\nType a message below to begin.`,
+      text: `Welcome to Project AURA.\n\nI'm your adaptive AI assistant. My communication style adjusts in real-time based on your physiological state:\n\n• CALM → Detailed, technical responses\n• STRESSED → Concise, supportive guidance\n\nType a message below to begin.`,
     },
   ]);
   const [input, setInput] = useState('');
@@ -80,7 +80,7 @@ function ChatPanel({ state }) {
       <div className="px-4 pt-3 pb-2 border-b border-slate-800/60">
         <h2 className="text-xs font-semibold text-cyan-400 flex items-center gap-2 uppercase tracking-wider">
           <Bot className="w-3.5 h-3.5" />
-          SENTIO AI — Adaptive Assistant
+          AURA AI — Adaptive Assistant
         </h2>
       </div>
 
@@ -102,7 +102,7 @@ function ChatPanel({ state }) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask SENTIO anything…"
+            placeholder="Ask AURA anything…"
             className="flex-1 bg-slate-800/80 text-slate-200 placeholder-slate-500 rounded-lg px-4 py-2.5 text-sm outline-none border border-slate-700/60 focus:border-cyan-500/40 transition-colors duration-200"
             disabled={isTyping}
           />
@@ -155,7 +155,7 @@ function ChatBubble({ sender, text }) {
       >
         {!isUser && (
           <div className="text-[9px] text-cyan-400/50 font-semibold uppercase tracking-wider mb-1">
-            SENTIO AI
+            AURA AI
           </div>
         )}
         <p className="whitespace-pre-wrap">{text}</p>
@@ -182,7 +182,7 @@ function TypingIndicator() {
       <div className="bg-slate-800/70 rounded-xl rounded-bl-sm px-4 py-3 border border-slate-700/30">
         <div className="flex items-center gap-2">
           <span className="text-[9px] text-cyan-400/50 font-semibold uppercase tracking-wider">
-            SENTIO AI
+            AURA AI
           </span>
           <div className="flex gap-1 ml-1">
             <div className="typing-dot" />

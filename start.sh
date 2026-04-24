@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =====================================================================
-#  SENTIO — Full-Stack Development Launcher (Linux/Mac)
+#  AURA — Full-Stack Development Launcher (Linux/Mac)
 #  Boots FastAPI backend (port 8000) + Vite React frontend (port 5173)
 # =====================================================================
 
@@ -14,7 +14,7 @@ FRONTEND="$ROOT/frontend"
 BACKEND="$ROOT/backend"
 
 echo "======================================================"
-echo "  SENTIO: Contactless Affective Computing Framework"
+echo "  AURA: Affective Understanding & Responsive Agent"
 echo "  Full-Stack Dashboard Launcher"
 echo "======================================================"
 echo ""
@@ -38,7 +38,7 @@ fi
 # Function to elegantly kill child processes on exit
 cleanup() {
     echo ""
-    echo "[INFO] Shutting down SENTIO servers..."
+    echo "[INFO] Shutting down AURA servers..."
     kill $(jobs -p) 2>/dev/null || true
     wait
     echo "[INFO] Shutdown complete."

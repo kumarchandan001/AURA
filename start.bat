@@ -1,13 +1,13 @@
 @echo off
 REM =====================================================================
-REM  SENTIO — Full-Stack Development Launcher
+REM  AURA — Full-Stack Development Launcher
 REM  Boots FastAPI backend (port 8000) + Vite React frontend (port 5173)
 REM =====================================================================
 
-title SENTIO Launcher
+title AURA Launcher
 echo.
 echo  ======================================================
-echo    SENTIO: Contactless Affective Computing Framework
+echo    AURA: Affective Understanding ^& Responsive Agent
 echo    Full-Stack Dashboard Launcher
 echo  ======================================================
 echo.
@@ -35,13 +35,13 @@ if not exist "%FRONTEND%\node_modules" (
 )
 
 echo  [1/2] Starting FastAPI backend on http://localhost:8000 ...
-start "SENTIO Backend" cmd /k "cd /d "%ROOT%backend" && "%VENV%\python.exe" -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+start "AURA Backend" cmd /k "cd /d "%ROOT%backend" && "%VENV%\python.exe" -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
 REM Give the backend a moment to initialize the camera.
 timeout /t 3 /nobreak > nul
 
 echo  [2/2] Starting Vite frontend on http://localhost:5173 ...
-start "SENTIO Frontend" cmd /k "cd /d "%FRONTEND%" && npm run dev"
+start "AURA Frontend" cmd /k "cd /d "%FRONTEND%" && npm run dev"
 
 echo.
 echo  ======================================================
