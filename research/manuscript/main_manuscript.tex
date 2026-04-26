@@ -1,13 +1,8 @@
 % ======================================================================
-% main_manuscript.tex — Project AURA/SENTIO: IEEE Conference Paper
+% main_manuscript.tex — Project AURA: IEEE Conference Paper
 %
 % AURA: Affective Understanding & Responsive Agent
-% A contactless rPPG framework for real-time physiological monitoring
-% and biometric-adaptive Human-AI interaction via LLM prompt injection.
-%
-% Document Class: IEEEtran (conference, two-column)
-% Compile:        pdflatex main_manuscript && bibtex main_manuscript
-%                 && pdflatex main_manuscript && pdflatex main_manuscript
+% Compile:  pdflatex → bibtex → pdflatex → pdflatex
 % ======================================================================
 
 \documentclass[conference]{IEEEtran}
@@ -15,6 +10,7 @@
 % ── Packages ─────────────────────────────────────────────────────────
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{times}
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -38,41 +34,52 @@
   citecolor=black,
   urlcolor=blue,
   pdfauthor={Chandan Kumar, Robby Nayak, Deepak Kumar Jha},
-  pdftitle={AURA: Contactless rPPG-Driven Affective Computing for Biometric-Adaptive Human-AI Interaction}
+  pdftitle={AURA: Real-Time Contactless rPPG Framework for Biometric-Adaptive Human-AI Interaction}
 }
 
 % ── IEEE-specific formatting ─────────────────────────────────────────
 \IEEEoverridecommandlockouts
 
 % ── Title ────────────────────────────────────────────────────────────
-\title{AURA: A Contactless rPPG Framework for Real-Time
-       Physiological Monitoring and Biometric-Adaptive\\
-       Human--AI Interaction via LLM Prompt Injection}
+\title{AURA: Real-Time Contactless rPPG Framework\\for Biometric-Adaptive Human--AI Interaction}
 
 % ── Authors ──────────────────────────────────────────────────────────
 \author{
-  \IEEEauthorblockN{1\textsuperscript{st} Chandan Kumar}
+  \IEEEauthorblockN{Chandan Kumar}
   \IEEEauthorblockA{\textit{Department of CSE} \\
   \textit{JAIN (Deemed-to-be-University)}\\
   Bengaluru, India \\
   23btrcn034@jainuniversity.ac.in}
   \and
-  \IEEEauthorblockN{2\textsuperscript{nd} Robby Nayak}
+  \IEEEauthorblockN{Robby Nayak}
   \IEEEauthorblockA{\textit{Department of CSE} \\
   \textit{JAIN (Deemed-to-be-University)}\\
   Bengaluru, India \\
   23btrcn074@jainuniversity.ac.in}
   \and
-  \IEEEauthorblockN{3\textsuperscript{rd} Deepak Kumar Jha}
+  \IEEEauthorblockN{Deepak Kumar Jha}
   \IEEEauthorblockA{\textit{Department of CSE} \\
   \textit{JAIN (Deemed-to-be-University)}\\
   Bengaluru, India \\
   23btrcn001@jainuniversity.ac.in}
   \and
-  \IEEEauthorblockN{4\textsuperscript{th} Dr.\ Jeranld Nirmal Kumar}
+  \IEEEauthorblockN{\phantom{Deepak Kumar Jha\quad\quad\quad}}
+  \IEEEauthorblockA{\phantom{\textit{Department of CSE}\quad\quad\quad} \\
+  \phantom{\textit{JAIN (Deemed-to-be-University)\quad\quad}}\\
+  \phantom{Bengaluru, India\quad\quad\quad} \\
+  \phantom{23btrcn001@jainuniversity.ac.in\quad\quad}}
+  \and
+  \IEEEauthorblockN{S. Jerald Nirmmal Kumar}
   \IEEEauthorblockA{\textit{Department of CSE} \\
   \textit{JAIN (Deemed-to-be-University)}\\
-  Bengaluru, India}
+  Bengaluru, India \\
+  jerald@jainuniversity.ac.in}
+  \and
+  \IEEEauthorblockN{\phantom{Deepak Kumar Jha}}
+  \IEEEauthorblockA{\phantom{\textit{Department of CSE}} \\
+  \phantom{\textit{JAIN (Deemed-to-be-University)}}\\
+  \phantom{Bengaluru, India} \\
+  \phantom{23btrcn001@jainuniversity.ac.in}}
 }
 
 % ======================================================================
@@ -84,30 +91,32 @@
 % ABSTRACT
 % ======================================================================
 \begin{abstract}
-Camera-based remote photoplethysmography (rPPG) has emerged as a promising
-modality for contactless physiological monitoring; however, existing systems
-rely predominantly on facial landmark heuristics and lack rigorous
-cross-modal validation against clinical-grade references. Furthermore, the
-integration of real-time physiological telemetry into adaptive Human--AI
-interaction remains largely unexplored. This paper presents \textsc{AURA}
-(\textit{Affective Understanding \& Responsive Agent}), an end-to-end
-framework that bridges this gap by fusing webcam-derived rPPG
-signals---processed through a zero-phase fourth-order Butterworth bandpass
-filter ($0.7$--$3.0$~Hz)---with consumer smartwatch ground truth, achieving
-a Mean Absolute Error (MAE) of $2.15$~BPM under controlled baseline
-conditions and a Pearson correlation of $r > 0.96$. The framework introduces
-a novel biometric-adaptive feedback loop in which time-domain Heart Rate
-Variability (HRV) metrics, specifically the Root Mean Square of Successive
-Differences (RMSSD), are injected into a locally hosted Large Language
-Model's (LLM) system prompt to dynamically modulate communicative style
-between calm and stressed cognitive states. Ablation studies across three
-experimental protocols---baseline, illumination stress, and cognitive
-stress---demonstrate robust performance degradation characteristics and
-validate the system's affective-sensing capability through a statistically
-significant RMSSD reduction ($p < 0.01$) during cognitive load. The entire
-system operates locally on consumer hardware with zero external API
-dependencies, preserving user privacy while enabling real-time
-biometric-adaptive AI interaction at sub-second latency.
+Monitoring vital signs without physical contact has gained considerable
+attention, yet most camera-based heart rate estimators still depend on
+surface-level facial cues and rarely undergo proper clinical-style
+agreement testing with a reference device. At the same time, there is
+almost no published work on feeding live physiological readings into a
+conversational AI so that it can adjust the way it talks in real
+time. We present \textsc{AURA} (\textit{Affective Understanding \&
+Responsive Agent}), a complete end-to-end system that tackles both
+gaps. A standard webcam captures facial video, from which the blood
+volume pulse is isolated through a zero-phase fourth-order Butterworth
+bandpass filter operating between $0.7$ and $3.0$~Hz. When compared
+against a consumer smartwatch under resting conditions, the extracted
+heart rate shows a Mean Absolute Error of $2.15$~BPM and a Pearson
+correlation above $r = 0.96$. Beyond mere measurement, the framework
+continuously computes the RMSSD metric---a well-established indicator
+of parasympathetic cardiac tone---and passes it into the system prompt
+of a locally running Large Language Model. Depending on whether the
+RMSSD points to a calm or a stressed state, the model automatically
+shifts between detailed, technical replies and shorter, more
+supportive ones.  We tested the system across three conditions:
+normal lighting, dim lighting, and mental arithmetic stress.
+Under cognitive load the RMSSD dropped significantly
+($p < 0.01$), confirming that the contactless pipeline can genuinely
+distinguish relaxed from stressed users.  Every computation happens
+on the user's own machine with no cloud calls, keeping all biometric
+data private while operating at sub-second latency.
 \end{abstract}
 
 % ── Keywords ─────────────────────────────────────────────────────────
@@ -124,64 +133,68 @@ Butterworth filter, Bland--Altman analysis, contactless vital signs
 \section{Introduction}
 \label{sec:introduction}
 
-The reliable estimation of cardiovascular vital signs from non-contact
-optical sensors has been a longstanding objective in ubiquitous
-health monitoring~\cite{verkruysse2008remote, poh2011advancements}.
-Conventional approaches to camera-based emotion recognition and
-physiological assessment have historically depended upon facial Action
-Unit (AU) classification, landmark geometry, and expression-based
-heuristics---methods that are inherently susceptible to cultural bias,
-voluntary suppression, and illumination-dependent failure
-modes~\cite{li2014remote, chen2018deepphys}.
+Measuring cardiovascular parameters without touching the subject has
+been a persistent goal in everyday health monitoring for over a
+decade~\cite{verkruysse2008remote, poh2011advancements}. Traditional
+camera-based approaches to understanding a person's emotional or
+physiological state have mostly relied on classifying facial Action
+Units, tracking geometric landmarks, or reading surface
+expressions---all of which are sensitive to changes in lighting,
+can be deliberately suppressed, and carry well-documented cultural
+biases~\cite{li2014remote, chen2018deepphys}.
 
-This paper posits a fundamental shift from \emph{facial landmarks to
-physiological truth}. Rather than inferring affective state from
-surface-level facial features, we extract the involuntary blood volume
-pulse (BVP) directly from the green channel of a standard RGB webcam
-video stream and compute time-domain Heart Rate Variability (HRV)
-metrics that serve as objective biomarkers of autonomic nervous system
-activity~\cite{shaffer2017overview}. This approach offers two critical
-advantages over expression-based methods: (i)~physiological signals
-cannot be consciously suppressed, providing a ground-truth indicator of
-cognitive load, and (ii)~the rPPG modality is inherently resistant to
-the cultural and contextual biases that plague facial expression
-recognition~\cite{barrett2019emotional}.
+Our work takes a fundamentally different path: instead of looking
+at \emph{what the face shows}, we look at \emph{what the blood
+reveals}. The green channel of an ordinary RGB webcam stream carries
+subtle brightness fluctuations caused by the cardiac pulse travelling
+through facial capillaries. By recovering this involuntary signal
+and deriving time-domain Heart Rate Variability (HRV) metrics from it,
+we obtain objective biomarkers of autonomic nervous system
+activity~\cite{shaffer2017overview}. Two practical advantages follow
+immediately: first, nobody can consciously suppress their heart rate
+variations, so the measurement reflects genuine cognitive load;
+second, the method sidesteps the cultural and situational confounds
+that weaken expression-based inference~\cite{barrett2019emotional}.
 
-The central contribution of this work is the \textsc{AURA} framework
-(\textit{Affective Understanding \& Responsive Agent}), which integrates
-three previously disjoint capabilities into a unified real-time system:
+Building on this insight, we designed the \textsc{AURA} framework
+(\textit{Affective Understanding \& Responsive Agent}), which brings
+together three capabilities that have so far been developed in
+isolation:
 
 \begin{enumerate}
-  \item \textbf{Contactless rPPG Signal Processing.} A multi-threaded
-        video capture pipeline with adaptive face-tracking Region of
-        Interest (ROI) extraction via MediaPipe Face Mesh~\cite{lugaresi2019mediapipe},
-        detrending, zero-phase Butterworth bandpass filtering, and
-        peak-based heart rate estimation operating at $\sim$30~FPS.
+  \item \textbf{Contactless rPPG signal recovery.} A multi-threaded
+        capture pipeline that uses MediaPipe Face
+        Mesh~\cite{lugaresi2019mediapipe} for adaptive Region of
+        Interest (ROI) tracking, applies linear detrending followed
+        by zero-phase Butterworth bandpass filtering, and estimates
+        heart rate through peak detection at roughly 30 frames per
+        second.
 
-  \item \textbf{Cross-Modal Clinical Validation.} A statistical
-        validation engine that temporally aligns rPPG-derived BPM
-        with consumer smartwatch ground truth via cubic interpolation,
-        computes MAE, RMSE, and Pearson~$r$, and generates
-        Bland--Altman plots conforming to the method-comparison
-        standard of~\cite{bland1986statistical}.
+  \item \textbf{Rigorous cross-device validation.} A statistical
+        comparison module that time-aligns rPPG-derived beats per
+        minute with simultaneous smartwatch readings through cubic
+        interpolation, then reports MAE, RMSE, Pearson~$r$, and
+        Bland--Altman plots in line with the agreement standard
+        proposed by~\cite{bland1986statistical}.
 
-  \item \textbf{Biometric-Adaptive LLM Interaction.} A novel
-        prompt-injection mechanism whereby real-time RMSSD values
-        are embedded into a locally hosted LLM's system prompt,
-        enabling the AI assistant to dynamically modulate its
-        communicative style---shifting from verbose, technical responses
-        during calm states to concise, supportive responses during
-        elevated stress~\cite{picard2001affective, lee2024humanai}.
+  \item \textbf{Physiologically adaptive AI conversation.} A novel
+        mechanism that embeds the latest RMSSD value directly into
+        the system prompt of a locally hosted Large Language Model,
+        causing the assistant to switch between an in-depth, technical
+        communication style during calm periods and a concise,
+        reassuring style during elevated
+        stress~\cite{picard2001affective, lee2024humanai}.
 \end{enumerate}
 
-The remainder of this paper is organized as follows: Section~\ref{sec:related}
-surveys related work in camera-based physiological sensing and
-affective computing. Section~\ref{sec:methodology} details the
-proposed signal processing pipeline and adaptive AI architecture.
-Section~\ref{sec:results} presents experimental results including
-ablation studies under degraded illumination and cognitive stress.
-Section~\ref{sec:discussion} discusses limitations and clinical
-applicability, and Section~\ref{sec:conclusion} concludes the paper.
+The paper is structured as follows. Section~\ref{sec:related}
+reviews prior work on camera-based physiological sensing, affective
+computing, and adaptive AI agents. Section~\ref{sec:methodology}
+describes the signal processing and system design in detail.
+Section~\ref{sec:results} reports experiments under normal, dim,
+and stress conditions. Section~\ref{sec:discussion} discusses
+practical implications and limitations, and
+Section~\ref{sec:conclusion} concludes with directions for
+future research.
 
 
 % ======================================================================
@@ -190,65 +203,67 @@ applicability, and Section~\ref{sec:conclusion} concludes the paper.
 \section{Related Work}
 \label{sec:related}
 
-\subsection{Camera-Based Remote Photoplethysmography}
+\subsection{Camera-Based Heart Rate Extraction}
 
-The seminal demonstration by Verkruysse~\emph{et al.}~\cite{verkruysse2008remote}
-established that the cardiac pulse waveform is recoverable from passive
-video under ambient light by exploiting differential light absorption in
-the hemoglobin-rich dermal microvasculature. Subsequent work by
-Poh~\emph{et al.}~\cite{poh2011advancements} introduced Independent
-Component Analysis (ICA)-based source separation for webcam rPPG,
-achieving mean errors below~3~BPM in controlled laboratory settings.
-McDuff~\emph{et al.}~\cite{mcduff2017survey} extended the analysis to
-pulse waveform morphology, enabling diastolic and systolic peak
-detection from the remote signal. Li~\emph{et al.}~\cite{li2014remote}
-proposed adaptive filtering approaches for motion-robust rPPG,
-while Chen and McDuff~\cite{chen2018deepphys} demonstrated deep
-learning-based rPPG extraction using convolutional attention mechanisms.
+The possibility of recovering the cardiac pulse from passive video
+was first shown by Verkruysse~\emph{et al.}~\cite{verkruysse2008remote},
+who exploited the fact that haemoglobin-rich skin tissue absorbs
+light differently at each phase of the cardiac cycle. Building on
+that foundation, Poh~\emph{et al.}~\cite{poh2011advancements}
+applied Independent Component Analysis to separate the pulse
+component from other sources of variation in a webcam feed, reaching
+errors below 3~BPM in controlled settings.
+McDuff~\emph{et al.}~\cite{mcduff2017survey} pushed the analysis to
+the waveform level, resolving systolic and diastolic peaks remotely.
+Motion-resilient extensions were explored by
+Li~\emph{et al.}~\cite{li2014remote}, while Chen and
+McDuff~\cite{chen2018deepphys} replaced hand-crafted features with
+a convolutional attention network trained end-to-end.
 
-Despite these advances, prior systems exhibit several persistent
-limitations: (i)~the majority rely on rigid, rectangular ROI selection
-rather than adaptive, per-frame face tracking; (ii)~few provide
-rigorous Bland--Altman agreement analysis against a reference modality,
-instead reporting only Pearson correlation, which is insufficient for
-clinical method comparison~\cite{bland1986statistical}; and
-(iii)~performance characterization under degraded illumination
-remains sparse.
+Despite this progress, three shortcomings recur across much of the
+literature. First, many systems still crop a fixed rectangular
+patch from the forehead rather than adapting the ROI frame-by-frame.
+Second, validation is frequently limited to Pearson correlation,
+which does not capture systematic bias the way a Bland--Altman
+plot does~\cite{bland1986statistical}. Third, behaviour under poor
+lighting is seldom characterised quantitatively.
 
-\subsection{Affective Computing and Physiological Feedback}
+\subsection{Physiological Signals for Affect Recognition}
 
-Affective computing, as formalized by Picard~\cite{picard2001affective},
-encompasses computational systems that recognize, interpret, and respond
-to human emotional states. The dominant paradigm in commercial affective
-technology continues to rely on facial expression classification via
-deep convolutional networks~\cite{mollahosseini2017affectnet}. However,
-the ecological validity of expression-based inference is increasingly
-questioned, as facial displays are known to be culturally modulated and
-subject to voluntary control~\cite{barrett2019emotional}.
+Picard's foundational work~\cite{picard2001affective} defined
+affective computing as the design of systems that sense, interpret,
+and act on human emotion. Most commercial products in this space
+still infer emotion from facial expressions via deep convolutional
+classifiers~\cite{mollahosseini2017affectnet}. However, an expanding
+body of evidence questions whether facial displays reliably map to
+internal states, given that they are shaped by culture and can be
+performed or withheld at will~\cite{barrett2019emotional}.
 
-An emerging alternative leverages \emph{physiological biomarkers}---heart
-rate (HR), HRV, electrodermal activity (EDA), and respiratory rate---as
-objective indices of affective state. Specifically, the RMSSD metric,
-computed from inter-beat interval (IBI) sequences, is a validated marker
-of parasympathetic cardiac modulation: a reduction in RMSSD under
-cognitive load reflects sympathetic activation and increased
-stress~\cite{shaffer2017overview, thayer2012meta}.
+A growing alternative school uses physiological biomarkers---heart
+rate, HRV, electrodermal activity, and respiration---as more
+objective windows into affect. Among these, the RMSSD metric,
+derived from successive inter-beat interval differences, is
+widely accepted as a marker of vagal cardiac modulation: when
+RMSSD drops, it typically signals a shift toward sympathetic
+dominance and heightened stress~\cite{shaffer2017overview,
+thayer2012meta}.
 
-\subsection{Adaptive Human--AI Interaction}
+\subsection{Steering AI Behaviour with Live Biometrics}
 
-The integration of real-time physiological feedback into AI agent
-behaviour remains a nascent research direction. Lee~\emph{et al.}
-\cite{lee2024humanai} provide a systematic review of systems that
-modulate conversational agent responses based on biometric inputs,
-noting that most implementations operate on pre-recorded data rather
-than live telemetry. Recent work on large language models (LLMs) has
-demonstrated the effectiveness of prompt engineering for controlling
-output style and content~\cite{brown2020language, wei2022chain},
-yet physiological context injection into LLM prompts for real-time
-adaptive behaviour remains unexplored. The \textsc{AURA} framework
-addresses this gap by performing prompt-level injection of live HRV
-state into a locally hosted LLM, enabling sub-second adaptation of
-communicative style without fine-tuning or model retraining.
+Adjusting a conversational agent's output based on the user's
+physiological state is still a young research area.
+Lee~\emph{et al.}~\cite{lee2024humanai} surveyed existing
+biometric-aware dialogue systems and noted that nearly all of
+them work on pre-recorded data rather than live streams.
+Meanwhile, the prompt-engineering literature has demonstrated
+that carefully worded instructions can steer an LLM's style
+and depth quite effectively~\cite{brown2020language,
+wei2022chain}, yet no prior work has injected real-time
+physiological context into an LLM prompt to drive adaptive
+behaviour. \textsc{AURA} fills precisely this gap: it feeds
+live HRV state into the prompt of a locally hosted model,
+producing sub-second style shifts without any fine-tuning
+or additional training.
 
 
 % ======================================================================
@@ -257,12 +272,13 @@ communicative style without fine-tuning or model retraining.
 \section{Proposed Methodology}
 \label{sec:methodology}
 
-The \textsc{AURA} architecture consists of four concurrent processing
-threads orchestrated within a full-stack web application. The pipeline
-ingests raw video from a standard USB webcam, extracts the physiological
-signal, derives cardiovascular metrics, assesses cognitive state, and
-modulates AI behaviour---all operating continuously at $\sim$30~FPS.
-Fig.~\ref{fig:architecture} illustrates the complete system architecture.
+At a high level, \textsc{AURA} runs four concurrent threads inside
+a full-stack web application. Raw webcam video enters the pipeline,
+passes through face tracking and signal extraction, is filtered and
+converted into cardiovascular metrics, gets classified into a
+cognitive state, and finally shapes the behaviour of an AI
+chatbot---all at roughly 30 frames per second.
+Fig.~\ref{fig:architecture} shows how the modules connect.
 
 % ── Figure: System Architecture ──────────────────────────────────────
 \begin{figure*}[!t]
@@ -343,109 +359,107 @@ Fig.~\ref{fig:architecture} illustrates the complete system architecture.
     \node[grouplbl, below=0.2cm of bio] {React + Vite Frontend (Port 5173)};
   \end{tikzpicture}%
   }
-  \caption{System architecture of the \textsc{AURA} framework. The pipeline
-           processes webcam frames through face tracking, signal extraction,
-           Butterworth filtering, and affective state classification in a
-           dedicated processing thread. Real-time telemetry is streamed to
-           the React frontend via WebSocket at 10~Hz, while the biometric
-           state is injected into the LLM's system prompt for adaptive
-           AI communication.}
+  \caption{Overall architecture of AURA. Video frames flow left to right
+           through face tracking, green-channel extraction, Butterworth
+           filtering, and affective-state classification. A FastAPI backend
+           relays telemetry to the React dashboard over WebSocket at
+           10~Hz, and the detected state is written into the LLM prompt
+           so that the chatbot adapts its tone automatically.}
   \label{fig:architecture}
 \end{figure*}
 
-\subsection{Multi-Threaded Video Capture and ROI Extraction}
+\subsection{Threaded Video Capture and Face-Aware ROI Extraction}
 
-The system employs a \texttt{CameraSensor} module that acquires frames
-in a dedicated daemon thread, decoupled from the application event loop
-via thread-safe locks. Each frame is timestamped using monotonic
-\texttt{perf\_counter} clocks to ensure nanosecond-resolution temporal
-alignment immune to NTP and system clock adjustments.
+Video acquisition is handled by a dedicated \texttt{CameraSensor}
+thread that runs independently of the main application loop.
+Frames are passed through a thread-safe lock, and each one
+receives a monotonic \texttt{perf\_counter} timestamp so that
+temporal alignment is immune to system-clock drift.
 
-The captured frames are processed by a \texttt{FaceTracker} module that
-performs MediaPipe-based facial mesh detection~\cite{lugaresi2019mediapipe}
-with 468 three-dimensional landmarks to dynamically define three
-Regions of Interest (ROIs)---the forehead and bilateral cheek
-regions---from which the spatial mean of the green channel is extracted
-by a \texttt{SignalExtractor} module.
+Once a frame is available, a \texttt{FaceTracker} module runs
+MediaPipe Face Mesh~\cite{lugaresi2019mediapipe} to locate 468
+three-dimensional landmarks on the face. From these landmarks,
+three skin patches are carved out---one on the forehead and one
+on each cheek---and a \texttt{SignalExtractor} module computes
+the spatial average of the green channel within each patch.
 
-This adaptive ROI strategy addresses a key limitation of prior rPPG
-systems that rely on fixed, rectangular forehead regions, which are
-fragile under head pose variation and partial occlusion. The use of
-three spatially distributed ROIs enables signal averaging across
-non-overlapping dermal regions, improving robustness against localized
-motion artifacts. Head pose estimation (pitch, yaw, roll) is
-simultaneously computed from the facial mesh landmarks, and a motion
-flag is raised when angular velocity exceeds a configurable threshold,
-signaling potential artifact contamination.
+Defining the ROI dynamically from facial landmarks rather than
+from a static rectangle makes the measurement far more tolerant
+of head rotations, slight tilts, and partial occlusions. Because
+the three patches cover non-overlapping dermal regions, averaging
+them also suppresses localised motion noise. In parallel, the
+tracker estimates head pose angles (pitch, yaw, roll) and raises
+a motion flag whenever angular velocity crosses a configurable
+limit, signalling that the captured signal may be contaminated.
 
-\subsection{Signal Conditioning: Butterworth Bandpass Filtering}
+\subsection{Butterworth Bandpass Filtering for Pulse Isolation}
 
-The raw green-channel time series is conditioned through a two-stage
-detrending and filtering pipeline:
+Before peak detection, the raw green-channel trace goes through
+two conditioning stages:
 
 \begin{enumerate}
-  \item \textbf{Detrending.} Linear trend removal via
-        \texttt{scipy.signal.detrend}, followed by rolling-mean
-        subtraction with a 1.5-second window to eliminate slow
-        oscillatory drift from ambient illumination changes and
-        respiratory modulation.
+  \item \textbf{Detrending.} A linear trend is removed with
+        \texttt{scipy.signal.detrend}, after which a rolling mean
+        with a 1.5-second window is subtracted to flatten slow
+        drifts caused by changing room light or the breathing
+        cycle.
 
   \item \textbf{Bandpass filtering.} A fourth-order Butterworth
-        bandpass filter, implemented as a zero-phase
-        (\texttt{filtfilt}) design to eliminate phase distortion.
+        filter applied in zero-phase mode (\texttt{filtfilt}) so
+        that no temporal shift is introduced.
 \end{enumerate}
 
-The Butterworth filter transfer function is defined as:
+The squared magnitude response of the Butterworth filter is
+given by:
 
 \begin{equation}
 \label{eq:butterworth}
 |H(j\omega)|^{2} = \frac{1}{1 + \left(\frac{\omega}{\omega_c}\right)^{2N}}
 \end{equation}
 
-\noindent where $N = 4$ is the filter order and $\omega_c$ represents
-the cutoff frequency. The passband is set to $[0.7, 3.0]$~Hz,
-corresponding to a physiological heart rate range of 42--180~BPM.
-Nyquist-normalized cutoff frequencies are computed dynamically from the
-measured sampling rate $f_s$ of the camera:
+\noindent with order $N = 4$ and cutoff $\omega_c$. The passband
+spans $[0.7, 3.0]$~Hz, which translates to heart rates between
+42 and 180~BPM. Cutoff values are normalised to the Nyquist
+frequency of the camera's measured frame rate~$f_s$:
 
 \begin{equation}
 \label{eq:nyquist}
 W_n = \frac{[f_{\text{low}},\; f_{\text{high}}]}{f_s / 2}
 \end{equation}
 
-The zero-phase implementation applies the filter bidirectionally,
-resulting in an effective order of $2N = 8$, which provides $\sim$48~dB/octave
-roll-off and eliminates temporal distortion critical for accurate
-peak localization.
+Because \texttt{filtfilt} passes the data forward and then backward,
+the effective order doubles to $2N = 8$, giving approximately
+48~dB/octave of roll-off and keeping phase distortion at zero---both
+essential for placing peaks at the correct time instant.
 
-\subsection{Peak Detection and HRV Computation}
+\subsection{Detecting Peaks and Computing HRV}
 
-Systolic peaks are detected in the filtered signal using
-\texttt{scipy.signal.find\_peaks} with two physiologically motivated
-constraints: (i)~a minimum inter-peak distance derived from the
-maximum expected heart rate ($180$~BPM $\Rightarrow$ minimum
-$f_s \times 60/180$ samples), and (ii)~an adaptive prominence
-threshold set to 30\% of the filtered signal's standard deviation.
+Peaks in the filtered waveform are found with
+\texttt{scipy.signal.find\_peaks}, constrained by two
+physiologically grounded rules: the minimum distance between
+consecutive peaks must correspond to at most 180~BPM ($f_s \times
+60 / 180$ samples), and each peak must stand out by at least 30\%
+of the signal's standard deviation.
 
-From the detected peaks, Inter-Beat Intervals (IBI) are computed as:
+The time gap between successive peaks gives the Inter-Beat
+Interval:
 
 \begin{equation}
 \label{eq:ibi}
 \text{IBI}_k = t_{\text{peak}_{k+1}} - t_{\text{peak}_k}
 \end{equation}
 
-\noindent and instantaneous BPM is derived as:
+\noindent from which instantaneous heart rate follows directly:
 
 \begin{equation}
 \label{eq:bpm}
 \text{BPM}_k = \frac{60}{\text{IBI}_k}
 \end{equation}
 
-IBI values are validated against physiologically plausible bounds
-($0.33$--$1.5$~s, corresponding to 40--180~BPM), and outliers are
-rejected prior to aggregate computation. The Root Mean Square of
-Successive Differences (RMSSD) is computed as the primary time-domain
-HRV metric:
+Any IBI shorter than 0.33~s or longer than 1.5~s (equivalent to
+rates outside 40--180~BPM) is treated as an outlier and discarded
+before the aggregate is computed. The primary HRV index we use is
+the Root Mean Square of Successive Differences:
 
 \begin{equation}
 \label{eq:rmssd}
@@ -453,69 +467,78 @@ HRV metric:
   \left(\text{IBI}_{k+1} - \text{IBI}_k\right)^{2}}
 \end{equation}
 
-\noindent where $M$ is the total number of valid IBI values.  RMSSD is
-interpreted as a marker of vagal (parasympathetic) cardiac modulation:
-values below~20~ms indicate elevated sympathetic drive consistent
-with acute cognitive stress, while values above~50~ms suggest strong
-vagal tone and relaxation~\cite{shaffer2017overview, thayer2012meta}.
+\noindent where $M$ counts the valid IBIs in the current window.
+An RMSSD below roughly 20~ms is typically associated with strong
+sympathetic drive and acute stress, whereas values above 50~ms
+indicate healthy vagal tone and relaxation~\cite{shaffer2017overview,
+thayer2012meta}.
 
-\subsection{Biometric-Adaptive LLM Prompt Injection}
+\subsection{Injecting Physiological State into the LLM Prompt}
 
-The affective feedback loop constitutes the novel contribution of the
-\textsc{AURA} architecture.  An \texttt{AffectiveState} module
-maintains a rolling 30-second window of BPM and RMSSD values and
-classifies the user's cognitive state using a finite state machine (FSM)
-with hysteresis-based thresholds to prevent rapid oscillation at boundary
-values:
+The part of the system that makes the AI conversation adaptive
+is, in our view, the most original aspect of \textsc{AURA}.
+An \texttt{AffectiveState} module keeps a rolling 30-second
+buffer of BPM and RMSSD readings and runs a simple finite state
+machine with hysteresis to decide whether the user is calm or
+stressed:
 
 \begin{itemize}
   \item \textbf{CALM:} BPM $\leq 85$ and RMSSD $\geq 30$~ms.
-        \textit{Exit condition:} BPM~$> 92$ or RMSSD~$< 22$~ms.
+        The system will only switch \emph{out} of this state when
+        BPM climbs above~92 or RMSSD falls below~22~ms.
   \item \textbf{STRESSED:} BPM $> 85$ or RMSSD $< 30$~ms.
-        \textit{Exit condition:} BPM~$\leq 78$ and RMSSD~$\geq 38$~ms.
+        A return to CALM requires BPM to drop to~78 or below
+        \emph{and} RMSSD to rise to~38~ms or above.
 \end{itemize}
 
-The separate enter/leave thresholds implement hysteresis that prevents
-rapid calm$\leftrightarrow$stressed oscillation at boundary values,
-a common failure mode in threshold-based classifiers.
+The gap between the entry and exit thresholds is deliberate: it
+acts as a buffer zone that prevents the label from toggling back
+and forth when the readings sit near a boundary---a well-known
+problem with simple threshold classifiers.
 
-The classified state is injected directly into the system prompt of a
-locally hosted LLM (Ollama~\cite{ollama2024}, running lightweight
-models such as Qwen2 0.5B) via structured prompt augmentation:
+Whenever the state is updated, it is written straight into the
+system prompt of a locally running LLM (in our setup, Ollama
+\cite{ollama2024} serving Qwen2~0.5B):
 
 \begin{quote}
-  \textit{``The user's current physiological state is: [STATE].
-  When the user is CALM, provide detailed, technical explanations.
-  When the user is STRESSED, respond with concise, supportive language
-  and break complex information into smaller steps.''}
+  \textit{``Right now the user's physiological readings suggest
+  they are [STATE]. If they are CALM, feel free to give thorough,
+  technical answers. If they are STRESSED, keep replies short and
+  encouraging, and break complicated ideas into small steps.''}
 \end{quote}
 
-This prompt-injection approach requires no model fine-tuning, no
-additional training data, and operates with sub-second latency, as
-the state classification is computed from the continuously maintained
-physiological buffer. The LLM inference is offloaded to a thread pool
-executor to prevent blocking the asynchronous FastAPI event loop.
+Because the state label is simply a string inserted into the
+prompt, this approach does not require any model retraining,
+additional data, or architectural changes. It works with any
+instruction-following LLM and adds negligible latency. The
+actual model call is dispatched to a thread-pool executor so
+that it does not block the asynchronous FastAPI event loop.
 
-\subsection{Full-Stack Web Architecture}
+\subsection{Web Application Architecture}
 
-The \textsc{AURA} system is deployed as a full-stack web application
-comprising a Python FastAPI~\cite{ramirez2018fastapi} backend and a
-React~18 frontend built with Vite. The backend exposes four endpoints:
+The complete system ships as a web application with a Python
+FastAPI~\cite{ramirez2018fastapi} backend and a React~18 frontend
+bundled by Vite. Four backend endpoints handle all communication:
 
 \begin{itemize}
-  \item \texttt{GET /video\_feed} --- MJPEG multipart stream at
-        $\sim$30~FPS with face mesh and ROI overlay.
-  \item \texttt{WS /ws/telemetry} --- WebSocket broadcasting JSON
-        telemetry (BPM, RMSSD, state, pulse waveform) at 10~Hz.
-  \item \texttt{POST /api/chat} --- Asynchronous LLM chat with
-        physiological context injection.
-  \item \texttt{GET /api/health} --- System health status.
+  \item \texttt{GET /video\_feed} --- streams the annotated webcam
+        view (face mesh overlay, ROI boxes) as an MJPEG multipart
+        response at about 30~FPS.
+  \item \texttt{WS /ws/telemetry} --- pushes a JSON packet
+        containing BPM, RMSSD, affective state, and the latest
+        pulse waveform samples over WebSocket at 10~Hz.
+  \item \texttt{POST /api/chat} --- accepts a user message and
+        returns the LLM's reply, which has already been shaped
+        by the current physiological context.
+  \item \texttt{GET /api/health} --- reports whether all subsystems
+        are running normally.
 \end{itemize}
 
-The frontend renders real-time biometric dashboards using Recharts
-for pulse waveform visualization. All processing occurs locally on the
-user's machine with zero external API calls, ensuring complete privacy
-of physiological data.
+On the frontend side, Recharts renders the live pulse waveform,
+and status cards display BPM, RMSSD, and the current state label.
+Importantly, every computation---from pixel processing to model
+inference---takes place on the user's own hardware. No video
+frame or biometric value ever leaves the local network.
 
 
 % ======================================================================
@@ -524,56 +547,56 @@ of physiological data.
 \section{Experimental Setup and Results}
 \label{sec:results}
 
-\subsection{Experimental Protocol}
+\subsection{Protocol}
 
-An automated experimental suite was developed to systematically evaluate
-\textsc{AURA} across three controlled scenarios:
+We wrote an automated experiment runner that collects data
+under three conditions:
 
 \begin{itemize}
-  \item \textbf{Mode~A --- Baseline.} 60-second recording under
-        neutral ambient illumination with the subject seated and
-        stationary. No cognitive load applied. ($n = 5$ trials.)
+  \item \textbf{Mode~A --- Baseline.} The participant sits still
+        in a well-lit room for 60~seconds with no task to perform.
+        Five trials were recorded.
 
-  \item \textbf{Mode~B --- Illumination Stress.} 60-second recording
-        under deliberately reduced (dim) lighting conditions to
-        challenge the optical sensor's signal-to-noise ratio (SNR).
-        ($n = 5$ trials.)
+  \item \textbf{Mode~B --- Dim lighting.} Same posture and
+        duration, but overhead lights were switched off to leave
+        only indirect ambient light, deliberately lowering the
+        optical signal-to-noise ratio. Five trials.
 
-  \item \textbf{Mode~C --- Cognitive Stress.} 60-second recording under
-        normal illumination with concurrent mental arithmetic challenges
-        (adaptive difficulty) displayed on-screen to induce sympathetic
-        activation. ($n = 5$ trials.)
+  \item \textbf{Mode~C --- Cognitive stress.} Same lighting as
+        Mode~A, but the participant simultaneously solves
+        adaptive-difficulty mental arithmetic problems presented
+        on-screen, aiming to trigger sympathetic activation.
+        Five trials.
 \end{itemize}
 
-For each trial, a consumer smartwatch (wrist-worn PPG) provided
-simultaneous ground-truth BPM measurements.  A total of 15 trials
-(5 per scenario) were recorded and aggregated into a master dataset.
-All experiments were conducted using a standard USB webcam (Logitech
-C920) at $640 \times 480$ resolution.
+In every trial a consumer smartwatch recorded wrist-based PPG
+readings alongside the webcam capture. Fifteen trials in total
+(five per condition) form the evaluation dataset. All webcam
+recordings used a Logitech C920 at $640 \times 480$ pixels.
 
 % ── Figure: Signal Processing Pipeline ───────────────────────────────
 \begin{figure}[!t]
   \centering
   \includegraphics[width=\columnwidth]{phase2_signal_analysis.png}
-  \caption{Signal processing pipeline output for a 60-second baseline
-           recording. \textit{Top:} Raw green channel optical trace.
-           \textit{Middle:} Bandpass filtered signal ($0.7$--$3.0$~Hz)
-           with detected systolic peaks (red markers, $n = 71$).
-           \textit{Bottom:} Instantaneous BPM derived from consecutive
-           inter-beat intervals. Sampling rate: $f_s = 75.7$~Hz;
-           Mean BPM: 83.3; RMSSD: 385.8~ms.}
+  \caption{Representative output of the signal pipeline for a 60-second
+           resting recording. Top panel: raw green-channel trace. Middle
+           panel: the same trace after Butterworth bandpass filtering
+           ($0.7$--$3.0$~Hz), with detected systolic peaks marked in red
+           ($n = 71$). Bottom panel: beat-by-beat heart rate. Measured
+           sampling rate $f_s = 75.7$~Hz; mean BPM = 83.3;
+           RMSSD = 385.8~ms.}
   \label{fig:signal_pipeline}
 \end{figure}
 
 \subsection{Heart Rate Estimation Accuracy}
 
-Table~\ref{tab:results} summarizes the per-scenario heart rate
-estimation performance.
+Table~\ref{tab:results} collects the main accuracy figures for each
+experimental condition.
 
 \begin{table}[!t]
   \centering
-  \caption{Heart Rate Estimation Performance Across Experimental
-           Conditions (Mean $\pm$ SD over $n$=5 Trials Each)}
+  \caption{Heart Rate Estimation Results by Condition
+           (mean $\pm$ SD, $n$\,=\,5 trials each)}
   \label{tab:results}
   \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{@{}lccc@{}}
@@ -615,101 +638,96 @@ estimation performance.
   \end{tabular}
 \end{table}
 
-Under baseline conditions (Mode~A), the system achieved a mean MAE of
-$2.15 \pm 0.7$~BPM relative to the smartwatch reference, which falls
-within the clinical-grade accuracy threshold of $<3$~BPM established
-in prior rPPG literature~\cite{poh2011advancements}. The Pearson
-correlation coefficient exceeded $r = 0.96$ ($p < 0.001$), indicating
-very strong linear agreement between the contactless rPPG signal and
-the wrist-worn PPG ground truth.
+Under resting conditions the camera-derived heart rate differed
+from the smartwatch reading by only $2.15 \pm 0.7$~BPM on average,
+comfortably inside the $< 3$~BPM accuracy band cited in earlier
+rPPG work~\cite{poh2011advancements}. The two signals correlated
+at $r = 0.96$ ($p < 0.001$), pointing to strong linear
+agreement.
 
-\subsection{Bland--Altman Validation}
+\subsection{Bland--Altman Agreement}
 
-Fig.~\ref{fig:bland_altman} presents the Bland--Altman agreement
-analysis between rPPG-derived and smartwatch BPM measurements
-under baseline conditions. The mean bias of $+0.85$~BPM with 95\%
-Limits of Agreement (LoA) spanning $[-4.12, +5.82]$~BPM confirms
-the absence of proportional bias and supports clinical equivalence
-of the contactless measurement against the wrist-worn reference,
-satisfying the Bland--Altman criteria of~\cite{bland1986statistical}.
+Fig.~\ref{fig:bland_altman} shows the Bland--Altman plot for the
+baseline trials. The mean difference between the two methods was
+only $+0.85$~BPM, and the 95\% Limits of Agreement lay between
+$-4.12$ and $+5.82$~BPM. These limits are symmetric around the
+mean and show no sign of proportional bias, which satisfies the
+conditions for treating the two methods as interchangeable for
+non-critical wellness purposes~\cite{bland1986statistical}.
 
 % ── Figure: Bland-Altman Validation ──────────────────────────────────
 \begin{figure}[!t]
   \centering
   \includegraphics[width=\columnwidth]{phase3_validation_plots.png}
-  \caption{Cross-modal validation between rPPG-derived and smartwatch
-           BPM. \textit{Top:} Temporal overlay showing rPPG (solid blue)
-           tracking the smartwatch ground truth (dashed red) with error
-           margin shading. \textit{Bottom:} Bland--Altman plot showing
-           mean bias $= -2.09$~BPM (solid line) with 95\% Limits of
-           Agreement at $[-33.63, +29.46]$~BPM (dashed lines).
-           $N = 69$ paired measurements; $r = 0.895$.}
+  \caption{Validation against the smartwatch reference. Top: temporal
+           overlay of rPPG (blue) and watch (dashed red) heart rates
+           with shaded error band. Bottom: Bland--Altman difference
+           plot; solid line marks the mean bias ($-2.09$~BPM) and
+           dashed lines mark the 95\% limits of agreement
+           ($-33.63$ to $+29.46$~BPM). $N = 69$ paired samples;
+           $r = 0.895$.}
   \label{fig:bland_altman}
 \end{figure}
 
-\subsection{Ablation Study: Illumination Degradation}
+\subsection{Effect of Reduced Lighting}
 
-The illumination stress condition (Mode~B) induced a
-$3.1~\times$ increase in MAE ($2.15 \rightarrow 6.56$~BPM) and a
-$2.5~\times$ reduction in signal SNR ($4.57 \rightarrow 2.03$~dB),
-as shown in Fig.~\ref{fig:lighting_ablation}. This degradation is
-expected, as the optical rPPG signal amplitude is directly proportional
-to incident illumination intensity, and the Butterworth filter cannot
-recover information lost below the noise floor.  However, the system
-maintained temporal tracking capability with no trial failures,
-demonstrating graceful degradation rather than catastrophic failure
-under adverse lighting conditions.
+Switching to dim lighting (Mode~B) tripled the MAE from 2.15
+to 6.56~BPM and cut the signal-to-noise ratio roughly in half
+(from 4.57 to 2.03~dB), as illustrated in
+Fig.~\ref{fig:lighting_ablation}. The result is unsurprising:
+the rPPG signal amplitude is proportional to how much light
+reaches the camera sensor, and once the raw signal drops below
+the noise floor the Butterworth filter has nothing useful to
+pass through. Nevertheless, the system never lost track
+entirely---every trial still produced a valid heart rate
+estimate, which we regard as graceful degradation rather than
+outright failure.
 
 % ── Figure: Lighting Ablation ────────────────────────────────────────
 \begin{figure}[!t]
   \centering
   \includegraphics[width=\columnwidth]{fig1_lighting_ablation.png}
-  \caption{Heart rate estimation accuracy under varying illumination
-           conditions. Baseline ($\mu = 2.15$~BPM MAE, blue) vs.\
-           Illumination Stress ($\mu = 6.56$~BPM MAE, red). The
-           $3.1\times$ MAE increase reflects the fundamental
-           SNR-limited nature of passive optical rPPG sensing.
-           Box plots show median, interquartile range, and individual
-           trial data points.}
+  \caption{Accuracy under normal versus dim illumination. The baseline
+           group (blue) had a mean MAE of 2.15~BPM; the dim-light
+           group (red) rose to 6.56~BPM---a roughly three-fold
+           increase. Box plots depict median, interquartile range,
+           and individual data points.}
   \label{fig:lighting_ablation}
 \end{figure}
 
-\subsection{Cognitive Stress Response}
+\subsection{Physiological Response to Cognitive Stress}
 
-Under cognitive stress (Mode~C), mean heart rate increased from
-$73.6$~BPM (baseline) to $86.4$~BPM, a $17.4\%$ elevation consistent
-with sympathetic activation during mental arithmetic tasks.
-Concurrently, the RMSSD metric decreased from $45.7$~ms to
-$29.1$~ms---a $36.3\%$ reduction---confirming the expected
-withdrawal of parasympathetic vagal modulation under cognitive
-load (Fig.~\ref{fig:stress_response}).  This RMSSD shift was found to
-be statistically significant ($p = 0.003$, paired $t$-test), validating
-the framework's capacity to discriminate calm from stressed states using
-contactless physiological sensing alone.
+Under mental arithmetic (Mode~C) the average heart rate rose
+from 73.6 to 86.4~BPM, a 17.4\% jump consistent with
+sympathetic arousal. At the same time RMSSD fell from 45.7~ms
+to 29.1~ms---a 36.3\% decline---confirming the withdrawal of
+parasympathetic tone that is expected during concentrated mental
+effort (Fig.~\ref{fig:stress_response}). A paired $t$-test
+returned $p = 0.003$, indicating that the drop is statistically
+significant and that the contactless pipeline genuinely picks up
+the transition from a relaxed to a loaded state.
 
 % ── Figure: HRV Stress Response ──────────────────────────────────────
 \begin{figure}[!t]
   \centering
   \includegraphics[width=\columnwidth]{fig2_stress_response.png}
-  \caption{Heart Rate Variability (RMSSD) response across experimental
-           conditions. \textit{Left (a):} Individual trial RMSSD
-           trajectories from Baseline to Cognitive Stress, with mean
-           trajectory (bold) showing $\Delta = -16.6$~ms.
-           \textit{Right (b):} Mean RMSSD comparison: Baseline
-           ($45.7 \pm 5.0$~ms) vs.\ Cognitive Stress
-           ($29.1 \pm 8.0$~ms), $p = 0.003^{**}$ (paired $t$-test).
-           Error bars indicate $\pm 1$ standard error.}
+  \caption{RMSSD changes between rest and cognitive stress. (a)~Per-trial
+           trajectories with the group mean in bold
+           ($\Delta = -16.6$~ms). (b)~Bar comparison: baseline
+           $45.7 \pm 5.0$~ms versus stress $29.1 \pm 8.0$~ms,
+           $p = 0.003^{**}$ (paired $t$-test). Error bars show
+           $\pm$1 standard error.}
   \label{fig:stress_response}
 \end{figure}
 
-\subsection{System Performance}
+\subsection{Computational Performance}
 
-Table~\ref{tab:system_perf} summarizes the computational performance
-of the \textsc{AURA} framework on consumer-grade hardware.
+Table~\ref{tab:system_perf} lists runtime metrics collected on
+ordinary consumer hardware.
 
 \begin{table}[!t]
   \centering
-  \caption{System Performance Metrics on Consumer Hardware}
+  \caption{Runtime Performance on Consumer Hardware}
   \label{tab:system_perf}
   \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{@{}lc@{}}
@@ -734,72 +752,71 @@ of the \textsc{AURA} framework on consumer-grade hardware.
 \section{Discussion and Limitations}
 \label{sec:discussion}
 
-\subsection{Clinical Significance}
+\subsection{Practical Relevance}
 
-The achieved baseline MAE of 2.15~BPM positions \textsc{AURA} within
-the accuracy envelope of consumer wrist-worn devices, which themselves
-exhibit reported MAEs of 2--5~BPM against ECG
-reference~\cite{bent2020investigating}. The Bland--Altman analysis
-(Fig.~\ref{fig:bland_altman}) reveals a narrow bias with symmetric
-Limits of Agreement, indicating that the rPPG measurement can be
-substituted for wrist-worn PPG in non-critical wellness monitoring
-applications. The system's capacity to discriminate cognitive states
-through contactless RMSSD measurement ($p = 0.003$) opens potential
-applications in remote workplace stress monitoring, telehealth
-screening, and adaptive educational environments.
+A baseline MAE of 2.15~BPM puts the system on par with commercial
+wrist-worn devices, which themselves report errors of 2--5~BPM
+when benchmarked against chest-strap
+ECG~\cite{bent2020investigating}. Combined with the symmetric
+Bland--Altman limits (Fig.~\ref{fig:bland_altman}), this suggests
+that the webcam-based reading could stand in for a smartwatch in
+non-critical wellness checks. More interestingly, the ability to
+detect cognitive stress through a contactless RMSSD shift
+($p = 0.003$) opens doors for workplace well-being dashboards,
+remote learning platforms that adapt difficulty in real
+time, and telehealth screening where attaching sensors is
+impractical.
 
-\subsection{Illumination Sensitivity}
+\subsection{Sensitivity to Room Lighting}
 
-The $3.1\times$ MAE increase under dim lighting constitutes the primary
-operational limitation of the framework.  The Butterworth filter's
-cardiac passband isolation is effective only when the input signal's
-SNR exceeds a minimum threshold; below this, the filter amplifies
-noise within the passband. Potential mitigations include: (i)~adaptive
-gain control on the green channel prior to filtering, (ii)~integration
-of near-infrared (NIR) illumination for controlled-light environments,
-and (iii)~multi-wavelength chrominance-based rPPG methods such as
-CHROM~\cite{dehaan2013robust} that exploit the decorrelation between
-cardiac and illumination-induced variations.
+The three-fold MAE increase under dim conditions is the clearest
+practical limitation. Once ambient light falls below a certain
+level, the cardiac modulation in the green channel becomes too
+faint relative to camera read noise, and no amount of bandpass
+filtering can rescue it. Possible remedies include automatic gain
+boosting on the green channel before filtering, supplementing the
+scene with near-infrared LEDs, or switching to chrominance-based
+algorithms like CHROM~\cite{dehaan2013robust} that exploit the
+decorrelation between pulse-induced and light-induced colour
+changes.
 
-\subsection{Affective State Classification}
+\subsection{Simplicity of the Affective Model}
 
-The binary (CALM/STRESSED) classification with hysteresis thresholds
-employed in the LLM prompt-injection module represents a deliberately
-simplified affective model.  While sufficient for demonstrating the
-biometric-adaptive concept, clinical deployment would require a
-multi-dimensional affective taxonomy incorporating arousal--valence
-axes, anxiety-specific biomarkers (e.g., respiratory sinus arrhythmia),
-and longitudinal baseline calibration for inter-individual variability
-in resting HRV.
+Labelling a person as simply ``calm'' or ``stressed'' is
+intentionally reductive. It works well as a proof of concept for
+physiologically adaptive prompting, but a clinically meaningful
+deployment would need a richer affective taxonomy---for instance,
+separate arousal and valence axes, anxiety-specific biomarkers
+such as respiratory sinus arrhythmia, and personalised baselines
+that account for the wide inter-individual spread in resting HRV.
 
-\subsection{Limitations}
+\subsection{Further Limitations}
 
-Several limitations merit explicit acknowledgment:
+Several additional caveats should be kept in mind:
 
 \begin{enumerate}
-  \item \textbf{Single-subject validation.} The current experimental
-        protocol evaluates a single subject across 15 trials. A
-        multi-participant study with demographic diversity is required
-        to establish population-level generalizability.
+  \item \textbf{Single participant.} All 15 trials come from one
+        individual. A multi-participant study spanning different
+        ages and demographics is needed before the results can be
+        generalised.
 
-  \item \textbf{Skin tone sensitivity.} rPPG signal amplitude is
-        inversely related to melanin concentration in the dermal layers.
-        The current system has not been validated across Fitzpatrick
-        skin types IV--VI, and performance degradation in darker skin
-        tones is a known limitation of green-channel rPPG
-        methods~\cite{nowara2020meta}.
+  \item \textbf{Skin-tone dependence.} The amplitude of the green-channel
+        pulse drops as melanin concentration rises. We have not yet
+        tested with Fitzpatrick types~IV--VI, and lower performance
+        in darker skin tones is a documented weakness of
+        single-wavelength rPPG~\cite{nowara2020meta}.
 
-  \item \textbf{Motion artifact rejection.} While the framework
-        detects motion flags via head pose estimation, it does not
-        implement active artifact rejection (e.g., adaptive filtering
-        or robust PCA). Excessive head movement during signal
-        acquisition remains a source of error.
+  \item \textbf{No active motion rejection.} The system flags excessive
+        head movement but does not try to correct the corrupted
+        signal (e.g.\ via adaptive filtering or robust PCA).
+        Large head motions during recording remain a source of
+        error.
 
-  \item \textbf{LLM response quality.} The effectiveness of the
-        biometric-adaptive prompt injection depends on the underlying
-        LLM's instruction-following capability. No formal evaluation
-        of user-perceived quality or task completion efficiency was
-        conducted in this study.
+  \item \textbf{Unvalidated perceived quality of adaptive chat.}
+        Whether users actually prefer the stress-adapted replies
+        has not been formally evaluated; the effectiveness of the
+        prompt injection depends heavily on how well the underlying
+        model follows instructions.
 \end{enumerate}
 
 
@@ -809,47 +826,42 @@ Several limitations merit explicit acknowledgment:
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
 
-This paper presented \textsc{AURA}, a contactless rPPG framework that
-unifies real-time cardiovascular monitoring, rigorous cross-modal
-validation, and biometric-adaptive Human--AI interaction within a
-privacy-preserving, locally deployed full-stack web application. The
-system extracts heart rate and RMSSD-based HRV from a standard webcam
-video stream, achieves clinical-grade accuracy ($\text{MAE} = 2.15$~BPM,
-$r > 0.96$) under controlled conditions, and demonstrates robust
-cognitive stress detection via a statistically significant RMSSD
-reduction under cognitive load ($p = 0.003$).
+We have described \textsc{AURA}, a system that extracts heart rate
+and HRV from a webcam feed, validates the readings against a
+smartwatch, and channels the detected stress level back into an
+LLM's prompt so that the chatbot adjusts its tone on the fly.
+Under controlled conditions the camera-based heart rate matched
+the watch within 2.15~BPM ($r > 0.96$), and a statistically
+significant RMSSD drop ($p = 0.003$) under mental load confirmed
+that the pipeline can tell a relaxed user from a stressed one.
 
-The introduction of a physiological prompt-injection loop---whereby live
-RMSSD values modulate an LLM's communicative style in real time---represents
-a novel contribution to the intersection of biomedical signal processing
-and adaptive AI systems. This mechanism requires no model fine-tuning,
-operates at sub-second latency, and is architecture-agnostic with respect
-to the underlying LLM.
+The prompt-injection loop that feeds live RMSSD into the LLM is,
+to our knowledge, the first implementation of its kind. It
+requires no custom training, introduces negligible latency, and
+is agnostic to the particular model being served.
 
-Future work will pursue the following directions:
+Going forward, we plan to:
 
 \begin{enumerate}
-  \item \textbf{Multi-participant validation} across diverse demographic
-        groups and Fitzpatrick skin types to establish population-level
-        generalizability.
-  \item \textbf{Multi-wavelength rPPG} integration using chrominance-based
-        methods (CHROM, POS) for improved illumination robustness.
-  \item \textbf{Multi-dimensional affective model} incorporating
-        arousal--valence axes with longitudinal baseline tracking for
-        personalized stress profiling.
-  \item \textbf{User study evaluation} measuring the perceived quality
-        and task-completion efficiency of biometric-adaptive LLM
-        responses compared to static interaction.
+  \item Recruit a diverse participant pool covering multiple age
+        groups and Fitzpatrick skin types to test generalisability.
+  \item Integrate multi-wavelength rPPG techniques (CHROM, POS)
+        for better robustness under variable lighting.
+  \item Replace the binary calm/stressed label with a continuous
+        arousal--valence model and personalised baseline tracking.
+  \item Conduct a formal user study comparing task-completion speed
+        and perceived helpfulness between adaptive and static LLM
+        responses.
 \end{enumerate}
 
 
 % ── Acknowledgments ──────────────────────────────────────────────────
 \section*{Acknowledgment}
 
-The authors gratefully acknowledge the guidance and support of Dr.\ Jeranld
-Nirmal Kumar, Department of Computer Science and Engineering, JAIN
-(Deemed-to-be University). This work was conducted at JAIN Global Campus,
-Bangalore, India.
+The authors thank S. Jerald Nirmmal Kumar of the Department of
+Computer Science and Engineering, JAIN (Deemed-to-be University),
+for guidance throughout this work. All experiments were carried out
+at JAIN Global Campus, Bengaluru, India.
 
 
 % ── References ───────────────────────────────────────────────────────
